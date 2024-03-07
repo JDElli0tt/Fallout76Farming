@@ -1,0 +1,18 @@
+This program logs inputs and time intervals for export to a series of spreadsheets.
+Useful for gathering data on farming runs in misc. video games; in this case, Fallout 76. 
+
+With this tool I can quickly input live data to an array (specifically number of spawns, 
+time to iterate, number of interations per spawn, what dress spawns, etc.) which then uses 
+PANDAS to output to excel document with the date for title. If there are additional runs 
+made that day, it will append with an additional sheet. 
+
+The intention is for this program to be the foundation of an auto-farming program, however, 
+the Fallout 76 game environment makes this difficult. As a novice programmmer, I assume that
+elements of this program are rather unpolished. It meets its primary purpose of 
+collecting data, however, and perhaps one day it will be more. 
+
+TO DO: 
+- Optimize program for new farming
+- Create simple GUI with Tkinter
+
+Please visit my website https://jdelli0tt.github.io/
