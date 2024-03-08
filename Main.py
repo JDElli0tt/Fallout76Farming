@@ -1,6 +1,6 @@
 """This program keeps track of Asylum Farming in the game Fallout 76
     It uses Tkinter for a UI that allows user input, appends inputs to an array,
-    then ultimately appends those arrays to an excel spreadsheet using PANDAS """
+    then ultimately adds those arrays to an excel spreadsheet using PANDAS """
 
 
 import tkinter as tk
