@@ -1,6 +1,11 @@
-#!/msujo/min/env python
 
-"""This program keeps track of Asylum Farming in the game Fallout 76"""
+
+"""This is an earlier proof of concept for the main.py program
+   It is not well written, but allowed me to gain some experience 
+   with Pandas"""
+
+
+
 import time
 from pynput import keyboard
 import pandas as pd
