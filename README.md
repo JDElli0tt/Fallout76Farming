@@ -11,8 +11,12 @@ the Fallout 76 game environment makes this difficult. As a novice programmmer, I
 elements of this program are rather unpolished. It meets its primary purpose of 
 collecting data, however, and perhaps one day it will be more. 
 
+Also featured in this respository is a Dashboard for data
+
 TO DO: 
-- Optimize program for new farming
-- Create simple GUI with Tkinter
+- Optimize program for new farming (DONE)
+- Create simple GUI with Tkinter (DONE)
+- Add the dynamic updtaing spawn count (doesn't affect data)
+- Change the Pandas output to be int specific (does affect data)
 
 Please visit my website https://jdelli0tt.github.io/
