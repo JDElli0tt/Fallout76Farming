@@ -1,9 +1,8 @@
 This program logs inputs and time intervals for export to a series of spreadsheets.
 Useful for gathering data on farming runs in misc. video games; in this case, Fallout 76. 
 
-With this tool I can quickly input live data to an array (specifically number of spawns, 
-time to iterate, number of interations per spawn, what dress spawns, etc.) which then uses 
-PANDAS to output to excel document with the date for title. If there are additional runs 
+With this tool I can quickly input live data to an array that then uses Pandas 
+to output to excel document with the date for title. If there are additional runs 
 made that day, it will append with an additional sheet. 
 
 The intention is for this program to be the foundation of an auto-farming program, however, 
