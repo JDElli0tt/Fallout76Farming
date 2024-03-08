@@ -13,15 +13,8 @@ from datetime import datetime
 import os
 
 runNumber = 1
-brown = int()
-green = int()
-blue = int()
-yellow = int()
-forrest = int()
-total = int()
 data = np.array([int(),int(),int(),int(),int(),int(),int(),int(),int(),int()])
 now = datetime.now()
-brown = 0
 iterationNumber = 1
 
 
@@ -44,7 +37,7 @@ def btnLogIteration_clicked():
     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
     iterationNumber +=1
     newrow = [runNumber,iterationNumber,current_time,Brown_Spin_Val.get(),Green_Spin_Val.get(),Blue_Spin_Val.get(),Pink_Spin_Val.get(),Yellow_Spin_Val.get(),Forest_Spin_Val.get(),Red_Spin_Val.get()]
-    data = np.vstack([newrow])
+    data = np.vstack([data, newrow])
     print (data)
 
 def btnLogRun_clicked():
@@ -63,7 +56,7 @@ def btnLogRun_clicked():
     Forest_Spin_Val.set(0)
     Red_Spin_Val.set(0)
     newrow = [runNumber,iterationNumber,current_time,Brown_Spin_Val.get(),Green_Spin_Val.get(),Blue_Spin_Val.get(),Pink_Spin_Val.get(),Yellow_Spin_Val.get(),Forest_Spin_Val.get(),Red_Spin_Val.get()]
-    data = np.vstack([newrow])
+    data = np.vstack([data, newrow])
     print (data)
 
 def btnLogEnd_clicked():
@@ -80,15 +73,15 @@ def btnLogEnd_clicked():
     #data = np.vstack([data, newrow])
     print (data)
     df = pd.DataFrame(data)
-    if os.path.exists("C:/Users/msujo/Desktop/Projects/Fallout Asylum/%s.xlsx/" %(datetime.today().strftime('%Y-%m-%d'))) == False:
-        df.to_excel("C:/Users/msujo/Desktop/Projects/Fallout Asylum/%s.xlsx/" %(datetime.today().strftime('%Y-%m-%d')),sheet_name="sheet",index = None, header = ['Run','Iteration','Time','Brown','Green', 'Blue','Yellow','Forrest','Red','Spawns'])
+    if os.path.exists("C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d'))) == False:
+        df.to_excel("C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d')),sheet_name="sheet",index = None, header = ['Run','Iteration','Time','Brown','Green', 'Blue','Yellow','Forrest','Red','Spawns'])
     else:
-        ExcelFile = "C:/Users/msujo/Desktop/Projects/Fallout Asylum/%s.xlsx/" %(datetime.today().strftime('%Y-%m-%d'))
+        ExcelFile = "C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d'))
         WorkBook = xl.load_workbook(ExcelFile)
         res = len(WorkBook.sheetnames)                                                           
         count=res+1
         count2 = count 
-        with pd.ExcelWriter("C:/Users/msujo/Desktop/Projects/Fallout Asylum/%s.xlsx/" %(datetime.today().strftime('%Y-%m-%d')), engine='openpyxl', mode='a') as writer:
+        with pd.ExcelWriter("C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d')), engine='openpyxl', mode='a') as writer:
             df.to_excel(writer, sheet_name="sheet"+str(count),index = None, header = ['Run','Iteration','Time','Brown','Green', 'Blue','Yellow','Forrest','Red','Spawns'])
     window.destroy()
     
