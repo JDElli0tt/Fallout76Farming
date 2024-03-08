@@ -13,7 +13,7 @@ from datetime import datetime
 import os
 
 runNumber = 1
-data = np.array([int(),int(),int(),int(),int(),int(),int(),int(),int(),int()])
+data = np.array([int(),int(),int(),int(),int(),int(),int(),int(),int(),int(),int()])
 now = datetime.now()
 iterationNumber = 1
 
@@ -25,7 +25,7 @@ def btnLogStart_clicked():
     now = datetime.now()
     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
     if iterationNumber == 1:
-        newrow = [runNumber,iterationNumber,current_time,0,0,0,0,0,0,0]
+        newrow = [runNumber,iterationNumber,current_time,0,0,0,0,0,0,0,0]
         data = np.vstack([newrow])
     print (data)
 
@@ -36,7 +36,7 @@ def btnLogIteration_clicked():
     now = datetime.now()
     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
     iterationNumber +=1
-    newrow = [runNumber,iterationNumber,current_time,Brown_Spin_Val.get(),Green_Spin_Val.get(),Blue_Spin_Val.get(),Pink_Spin_Val.get(),Yellow_Spin_Val.get(),Forest_Spin_Val.get(),Red_Spin_Val.get()]
+    newrow = [runNumber,iterationNumber,current_time,Brown_Spin_Val.get(),Green_Spin_Val.get(),Blue_Spin_Val.get(),Pink_Spin_Val.get(),Yellow_Spin_Val.get(),Forest_Spin_Val.get(),Red_Spin_Val.get(),Total_Spin_Val.get()]
     data = np.vstack([data, newrow])
     print (data)
 
@@ -55,7 +55,7 @@ def btnLogRun_clicked():
     Yellow_Spin_Val.set(0)
     Forest_Spin_Val.set(0)
     Red_Spin_Val.set(0)
-    newrow = [runNumber,iterationNumber,current_time,Brown_Spin_Val.get(),Green_Spin_Val.get(),Blue_Spin_Val.get(),Pink_Spin_Val.get(),Yellow_Spin_Val.get(),Forest_Spin_Val.get(),Red_Spin_Val.get()]
+    newrow = [runNumber,iterationNumber,current_time,Brown_Spin_Val.get(),Green_Spin_Val.get(),Blue_Spin_Val.get(),Pink_Spin_Val.get(),Yellow_Spin_Val.get(),Forest_Spin_Val.get(),Red_Spin_Val.get(),Total_Spin_Val.get()]
     data = np.vstack([data, newrow])
     print (data)
 
@@ -65,7 +65,7 @@ def btnLogEnd_clicked():
     global iterationNumber
     now = datetime.now()
     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
-    newrow = [runNumber,iterationNumber,current_time,0,0,0,0,0,0,0]
+    newrow = [runNumber,iterationNumber,current_time,0,0,0,0,0,0,0,0]
     data = np.vstack([data, newrow])
     #newrow = ['Total Attempts','Total Time','Total Brown','Total Green','Total Blue','Total Yellow','Total Forrest','Total Red','Total Spawns']
     #data = np.vstack([data, newrow])
@@ -82,7 +82,7 @@ def btnLogEnd_clicked():
         count=res+1
         count2 = count 
         with pd.ExcelWriter("C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d')), engine='openpyxl', mode='a') as writer:
-            df.to_excel(writer, sheet_name="sheet"+str(count),index = None, header = ['Run','Iteration','Time','Brown','Green', 'Blue','Yellow','Forrest','Red','Spawns'])
+            df.to_excel(writer, sheet_name="sheet"+str(count),index = None, header = ['Run','Iteration','Time','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'])
     window.destroy()
     
 
@@ -142,17 +142,23 @@ Red_Spin_Val = tk.IntVar()
 RedSpin = tk.Spinbox(window, from_=0, to=3, textvariable=Red_Spin_Val)
 RedSpin.grid(column=1, row=9,)
 
+TotalCount = tk.Label(window, text= 'Number of Total Dresses this iteration')
+TotalCount.grid(column=0, row=10)
+Total_Spin_Val = tk.IntVar()
+TotalSpin = tk.Spinbox(window, from_=0, to=3, textvariable=Total_Spin_Val)
+TotalSpin.grid(column=1, row=10,)
+
 btnLogStart = tk.Button(window, text="Begin this Session", command=btnLogStart_clicked)
-btnLogStart.grid(column=0, row=10, columnspan=2)
+btnLogStart.grid(column=0, row=11, columnspan=2)
 
 btnLogIteration = tk.Button(window, text="Log Iteration", command=btnLogIteration_clicked)
-btnLogIteration.grid(column=0, row=11, columnspan=2)
+btnLogIteration.grid(column=0, row=12, columnspan=2)
 
 btnLogRun = tk.Button(window, text="Log Run", command=btnLogRun_clicked)
-btnLogRun.grid(column=0, row=12, columnspan=2)
+btnLogRun.grid(column=0, row=13, columnspan=2)
 
 btnLogEnd = tk.Button(window, text="End and Export", command=btnLogEnd_clicked)
-btnLogEnd.grid(column=0, row=13, columnspan=2)
+btnLogEnd.grid(column=0, row=14, columnspan=2)
 
 
 
