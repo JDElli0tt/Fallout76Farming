@@ -46,7 +46,7 @@ def btnLogRun_clicked():
     global iterationNumber
     now = datetime.now()
     current_time = now.strftime("%Y-%m-%d %H:%M:%S")
-    iterationNumber =0
+    iterationNumber =1
     runNumber +=1
     Brown_Spin_Val.set(0)
     Green_Spin_Val.set(0)
@@ -74,7 +74,7 @@ def btnLogEnd_clicked():
     print (data)
     df = pd.DataFrame(data)
     if os.path.exists("C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d'))) == False:
-        df.to_excel("C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d')),sheet_name="sheet",index = None, header = ['Run','Iteration','Time','Brown','Green', 'Blue','Yellow','Forrest','Red','Spawns'])
+        df.to_excel("C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d')),sheet_name="sheet",index = None, header = ['Run','Iteration','Time','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'])
     else:
         ExcelFile = "C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d'))
         WorkBook = xl.load_workbook(ExcelFile)
