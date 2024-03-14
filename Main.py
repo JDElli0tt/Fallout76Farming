@@ -10,6 +10,7 @@ import pandas as pd
 import numpy as np
 import openpyxl as xl
 from datetime import datetime
+import functools
 import os
 
 runNumber = 1
@@ -73,6 +74,9 @@ def btnLogEnd_clicked():
     #data = np.vstack([data, newrow])
     print (data)
     df = pd.DataFrame(data)
+    df.apply(pd.to_numeric,errors='ignore').info()
+    #df.iloc[1:] = df.astype(int, columns=['Run','Iteration','Time','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'])
+    #df['Run','Iteration','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'] = df[['Run','Iteration','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total']].astype(int)
     if os.path.exists("C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d'))) == False:
         df.to_excel("C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d')),sheet_name="sheet",index = None, header = ['Run','Iteration','Time','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'])
     else:
@@ -83,6 +87,7 @@ def btnLogEnd_clicked():
         count2 = count 
         with pd.ExcelWriter("C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d')), engine='openpyxl', mode='a') as writer:
             df.to_excel(writer, sheet_name="sheet"+str(count),index = None, header = ['Run','Iteration','Time','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'])
+            df['Run','Iteration','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'] = df ['Run','Iteration','Time','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'].astype(int)
     window.destroy()
     
 

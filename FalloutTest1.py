@@ -173,3 +173,36 @@ def main():
                  
     
 main()
+
+
+
+
+def btnLogEnd_clicked():
+    global runNumber
+    global data
+    global iterationNumber
+    now = datetime.now()
+    current_time = now.strftime("%Y-%m-%d %H:%M:%S")
+    newrow = [runNumber,iterationNumber,current_time,0,0,0,0,0,0,0,0]
+    data = np.vstack([data, newrow])
+    #newrow = ['Total Attempts','Total Time','Total Brown','Total Green','Total Blue','Total Yellow','Total Forrest','Total Red','Total Spawns']
+    #data = np.vstack([data, newrow])
+    #newrow = [CountCounter-1,'=SUM(C2:C'+str(CountCounter+2)+')','=SUM(C2:C'+str(CountCounter+2)+')','=SUM(D2:D'+str(CountCounter+2)+')','=SUM(E2:E'+str(CountCounter+2)+')','=SUM(F2:F'+str(CountCounter+2)+')','=SUM(G2:G'+str(CountCounter+2)+')','=SUM(H2:H'+str(CountCounter+2)+')','=SUM(I2:I'+str(CountCounter+2)+')']
+    #data = np.vstack([data, newrow])
+    print (data)
+    df = pd.DataFrame(data)
+    df.apply(pd.to_numeric,errors='ignore').info()
+    #df.iloc[1:] = df.astype(int, columns=['Run','Iteration','Time','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'])
+    #df['Run','Iteration','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'] = df[['Run','Iteration','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total']].astype(int)
+    if os.path.exists("C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d'))) == False:
+        df.to_excel("C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d')),sheet_name="sheet",index = None, header = ['Run','Iteration','Time','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'])
+    else:
+        ExcelFile = "C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d'))
+        WorkBook = xl.load_workbook(ExcelFile)
+        res = len(WorkBook.sheetnames)                                                           
+        count=res+1
+        count2 = count 
+        with pd.ExcelWriter("C:/Users/msujo/Desktop/Projects/Fallout Asylum/Data Output/%s.xlsx" %(datetime.today().strftime('%Y-%m-%d')), engine='openpyxl', mode='a') as writer:
+            df.to_excel(writer, sheet_name="sheet"+str(count),index = None, header = ['Run','Iteration','Time','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'])
+            df['Run','Iteration','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'] = df ['Run','Iteration','Time','Brown','Green', 'Blue','Pink','Yellow','Forrest','Red','Total'].astype(int)
+    window.destroy()
